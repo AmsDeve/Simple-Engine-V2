@@ -13,8 +13,8 @@ Play the original game in:https://www.newgrounds.com/portal/view/770371
 # Credits
 
 - [AmsDev](https://twitter.com/AmsDev2) - Main Programmer & Engine Creator
+- [AssmanBruh!](https://twitter.com/RodvdVealsco) - Main artist & Co-Creator
 - [AndyGamer](https://twitter.com/AndyGamer1116YT) - Icon artist
-- [AssmanBruh!](https://twitter.com/RodvdVealsco) - Main artist
 
 # Previews
 
