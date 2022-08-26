@@ -106,21 +106,17 @@ var grpMenuShit:FlxTypedGroup<Alphabet>;
 
 		if (accepted)
 		{
-			var daSelected:String = menuItems[curSelected];
-
-			switch (daSelected)
+			switch (curSelected)
 			{
-				case 'KeyBinds':
-					openSubState(new options.KeyBindMenu());
-case 'Preferences':
-	FlxTween.tween(FlxG.camera, {zoom: 5}, 0.8, {ease: FlxEase.expoIn});
-
-	Preferences.isPauseSubState = false;
-	FlxG.switchState(new options.Preferences());
-	case 'Offsets':
-		FlxTween.tween(FlxG.camera, {zoom: 5}, 0.8, {ease: FlxEase.expoIn});
-
-		FlxG.switchState(new options.OffsetsState());
+case 0:
+openSubState(new options.KeyBindMenu());
+case 1:
+FlxTween.tween(FlxG.camera, {zoom: 5}, 0.8, {ease: FlxEase.expoIn});
+Preferences.isPauseSubState = false;
+FlxG.switchState(new options.Preferences());
+case 2:
+FlxTween.tween(FlxG.camera, {zoom: 5}, 0.8, {ease: FlxEase.expoIn});
+FlxG.switchState(new options.OffsetsState());
 			}
 		}
 	}
@@ -128,7 +124,7 @@ case 'Preferences':
 	function changeSelection(change:Int = 0):Void
 	{
 
-		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+		FlxG.sound.play(Paths.sound('scrollMenu'));
 		
 		curSelected += change;
 
