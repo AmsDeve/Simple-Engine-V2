@@ -73,7 +73,7 @@ class PlayState extends MusicBeatState
 	public var strumLine:FlxSprite;
 	private var curSection:Int = 0;
 
-	private var camFollow:FlxObject;
+	public static var camFollow:FlxObject;
 
 	private static var prevCamFollow:FlxObject;
 
@@ -713,6 +713,11 @@ class PlayState extends MusicBeatState
 		// healthBar
 		hudGroup.add(healthBar);
 
+		if (FlxG.random.bool(2.5))
+			{
+				iconP1 = new HealthIcon('bf-old', true);
+			}
+			else
 		iconP1 = new HealthIcon(SONG.player1, true);
 		iconP1.y = healthBar.y - (iconP1.height / 2);
 		hudGroup.add(iconP1);
@@ -1020,7 +1025,7 @@ hudGroup.add(scoreTxt);
 		songLength = FlxG.sound.music.length;
 
 		// Updating Discord Rich Presence (with Time Left)
-		DiscordClient.changePresence(detailsText + ' ' + SONG.song + " (" + storyDifficultyText + ') ', 'Score: ${songScore} | Rating: ${rating} | Misses: ${missesCounter} | GoodHts: ${goodHitsCounter} | Combo: ${comboPercentaje}', iconRPC, true, songLength);
+		DiscordClient.changePresence(detailsText + ' ' + SONG.song + " (" + storyDifficultyText + ') ', '', iconRPC, true, songLength);
 		#end
 	}
 
@@ -1309,11 +1314,11 @@ hudGroup.add(scoreTxt);
 			#if desktop
 			if (startTimer.finished)
 			{
-				DiscordClient.changePresence(detailsText + ' ' + SONG.song + " (" + storyDifficultyText + ') ', 'Score: ${songScore} | Rating: ${rating} | Misses: ${missesCounter} | GoodHts: ${goodHitsCounter} | Combo: ${comboPercentaje}', iconRPC, true, songLength - Conductor.songPosition);
+				DiscordClient.changePresence(detailsText + ' ' + SONG.song + " (" + storyDifficultyText + ') ', '', iconRPC, true, songLength - Conductor.songPosition);
 			}
 			else
 			{
-				DiscordClient.changePresence(detailsText + ' ' + SONG.song + " (" + storyDifficultyText + ') ', 'Score: ${songScore} | Rating: ${rating} | Misses: ${missesCounter} | GoodHts: ${goodHitsCounter} | Combo: ${comboPercentaje}', iconRPC);
+				DiscordClient.changePresence(detailsText + ' ' + SONG.song + " (" + storyDifficultyText + ') ', '', iconRPC);
 			}
 			#end
 		}
@@ -1328,11 +1333,11 @@ hudGroup.add(scoreTxt);
 		{
 			if (Conductor.songPosition > 0.0)
 			{
-				DiscordClient.changePresence(detailsText + ' ' + SONG.song + " (" + storyDifficultyText + ') ', 'Score: ${songScore} | Rating: ${rating} | Misses: ${missesCounter} | GoodHts: ${goodHitsCounter} | Combo: ${comboPercentaje}', iconRPC, true, songLength - Conductor.songPosition);
+				DiscordClient.changePresence(detailsText + ' ' + SONG.song + " (" + storyDifficultyText + ') ', '', iconRPC, true, songLength - Conductor.songPosition);
 			}
 			else
 			{
-				DiscordClient.changePresence(detailsText + ' ' + SONG.song + " (" + storyDifficultyText + ') ', 'Score: ${songScore} | Rating: ${rating} | Misses: ${missesCounter} | GoodHts: ${goodHitsCounter} | Combo: ${comboPercentaje}', iconRPC);
+				DiscordClient.changePresence(detailsText + ' ' + SONG.song + " (" + storyDifficultyText + ') ', '', iconRPC);
 			}
 		}
 		#end
@@ -1345,7 +1350,7 @@ hudGroup.add(scoreTxt);
 		#if desktop
 		if (health > 0 && !paused)
 		{
-			DiscordClient.changePresence(detailsText + ' ' + SONG.song + " (" + storyDifficultyText + ') ', 'Score: ${songScore} | Rating: ${rating} | Misses: ${missesCounter} | GoodHts: ${goodHitsCounter} | Combo: ${comboPercentaje}', iconRPC);
+			DiscordClient.changePresence(detailsText + ' ' + SONG.song + " (" + storyDifficultyText + ') ', '', iconRPC);
 		}
 		#end
 
@@ -1441,17 +1446,10 @@ hudGroup.add(scoreTxt);
 			persistentDraw = true;
 			paused = true;
 
-			// 1 / 1000 chance for Gitaroo Man easter egg
-			if (FlxG.random.bool(0.1))
-			{
-				// gitaroo man easter egg
-				FlxG.switchState(new GitarooPause());
-			}
-			else
-				openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+			openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 		
 			#if desktop
-			DiscordClient.changePresence('Pause Menu ' + SONG.song + " (" + storyDifficultyText + ') ', 'Score: ${songScore} | Rating: ${rating} | Misses: ${missesCounter} | GoodHts: ${goodHitsCounter} | Combo: ${comboPercentaje}', iconRPC);
+			DiscordClient.changePresence('Pause Menu ' + SONG.song + " (" + storyDifficultyText + ') ', '', iconRPC);
 			#end
 		}
 
@@ -1463,6 +1461,11 @@ hudGroup.add(scoreTxt);
 			DiscordClient.changePresence("Chart Editor", null, null, true);
 			#end
 		}
+
+		if (FlxG.keys.justPressed.EIGHT)
+			{
+				FlxG.switchState(new AnimationDebug(SONG.player2));
+			}
 
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
 		// FlxG.watch.addQuick('VOLRight', vocals.amplitudeRight);
@@ -1683,7 +1686,7 @@ hudGroup.add(scoreTxt);
 			
 			#if desktop
 			// Game Over doesn't get his own variable because it's only used here
-			DiscordClient.changePresence("Game Over - " + detailsText + ' ' + SONG.song + " (" + storyDifficultyText + ') ', 'Score: ${songScore} | Rating: ${rating} | Misses: ${missesCounter} | GoodHts: ${goodHitsCounter} | Combo: ${comboPercentaje}', iconRPC);
+			DiscordClient.changePresence("Game Over - " + detailsText + ' ' + SONG.song + " (" + storyDifficultyText + ') ', '', iconRPC);
 			#end
 		}
 
