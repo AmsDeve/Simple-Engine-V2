@@ -25,7 +25,7 @@ class FreeplayState extends MusicBeatState
 	var selector:FlxText;
 	var curSelected:Int = 0;
 	var curDifficulty:Int = 1;
-
+	
 	var scoreText:FlxText;
 	var missesText:FlxText;
 	var gdhtsText:FlxText;
@@ -39,6 +39,8 @@ class FreeplayState extends MusicBeatState
 	var intendedMisses:Int = 0;
 	var intendedCombo:Int = 0;
 	var intendedGD:Int = 0;
+
+	var disc:FlxSprite;
 
 	var bg:FlxSprite;
 
@@ -149,6 +151,13 @@ class FreeplayState extends MusicBeatState
 		add(diffText);
 
 		add(scoreText);
+
+		disc = new FlxSprite().loadGraphic(Paths.image('assDisc'));
+		disc.setGraphicSize(Std.int(disc.width * 0.4));
+		disc.angularVelocity = 15;
+		disc.x = 840;
+		disc.y = 295;
+		add(disc);
 
 		changeSelection();
 		changeDiff();
@@ -329,90 +338,128 @@ class FreeplayState extends MusicBeatState
 		if (curSelected == 0)
 			{
 				bg.color = 0xFFA5004D;
+
+				disc.angularVelocity = 15;
 			}
 
 			//week 1
 		if (curSelected == 1)
 			{
 				bg.color = 0xFFBD7BD3;
+
+				disc.angularVelocity = 15;
 			}
 			if (curSelected == 2)
 				{
 					bg.color = 0xFFBD7BD3;
+
+					disc.angularVelocity = 35;
 				}
 				if (curSelected == 3)
 					{
 						bg.color = 0xFFBD7BD3;
+
+						disc.angularVelocity = 55;
 					}
 
 		//week 2
 		if (curSelected == 4)
 			{
 				bg.color = 0xFFdd947f;
+
+				disc.angularVelocity = 25;
 			}
 			if (curSelected == 5)
 				{
 					bg.color = 0xFFdd947f;
+
+					disc.angularVelocity = 35;
 				}
 				if (curSelected == 6)
 					{
 						bg.color = 0xFFF2FF6D;
+
+						disc.angularVelocity = 15;
 					}
 		
 		//week 3
 		if (curSelected == 7)
 			{
 				bg.color = 0xFFB7D855;
+
+				disc.angularVelocity = 15;
 			}
 			if (curSelected == 8)
 				{
 					bg.color = 0xFFB7D855;
+
+					disc.angularVelocity = 35;
 				}
 				if (curSelected == 9)
 					{
 						bg.color = 0xFFB7D855;
+
+						disc.angularVelocity = 55;
 					}
 
 		//week 4
 		if (curSelected == 10)
 			{
 				bg.color = 0xFFD8558E;
+
+				disc.angularVelocity = 15;
 			}
 			if (curSelected == 11)
 				{
 					bg.color = 0xFFD8558E;
+
+					disc.angularVelocity = 35;
 				}
 				if (curSelected == 12)
 					{
 						bg.color = 0xFFD8558E;
+
+						disc.angularVelocity = 55;
 					}
 
 		//week 5
 		if (curSelected == 13)
 			{
 				bg.color = 0xFFcb6ab4;
+
+				disc.angularVelocity = 15;
 			}
 			if (curSelected == 14)
 				{
 					bg.color = 0xFFcb6ab4;
+
+					disc.angularVelocity = 25;
 				}
 				if (curSelected == 15)
 					{
 						bg.color = 0xFFF2FF6D;
+
+						disc.angularVelocity = 35;
 					}
 
 		//week 6
 		if (curSelected == 16)
 			{
 				bg.color = 0xFFFFAA6F;
+
+				disc.angularVelocity = 25;
 			}
 			if (curSelected == 17)
 				{
 					bg.color = 0xFFFFAA6F;
+
+					disc.angularVelocity = 35;
 				}
 				if (curSelected == 18)
 					{
 						bg.color = 0xFFFF3C6E;
+
+						disc.angularVelocity = 55;
 					}
 
 		#if !switch
