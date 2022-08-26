@@ -34,8 +34,10 @@ class OffsetsState extends MusicBeatState
 	var iconP1:HealthIcon;
 	var iconP2:HealthIcon;
 
-
 	var camFollow:FlxObject;
+
+	private var bgColors:Array<String> = ['#314d7f', '#4e7093', '#70526e', '#594465'];
+	private var colorRotation:Int = 1;
 
 	var defaultX:Float = FlxG.width * 0.55 - 135;
 	var defaultY:Float = FlxG.height / 2 - 50;
@@ -50,16 +52,26 @@ var bg:FlxSprite;
 		DiscordClient.changePresence("In the Options Menu(Offsets)", null);
 		#end
 
-        bg = new FlxSprite(-80).loadGraphic(Paths.image('stageback', 'shared'));
+        bg = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat', 'preload'));
 		bg.setGraphicSize(Std.int(bg.width * 1.1));
 		bg.updateHitbox();
 		bg.screenCenter();
 		bg.antialiasing = true;
 		add(bg);
 
+		FlxTween.color(bg, 1, bg.color, FlxColor.fromString(bgColors[colorRotation]));
+
+		new FlxTimer().start(0.5, function(tmr:FlxTimer)
+			{
+				FlxTween.color(bg, 1, bg.color, FlxColor.fromString(bgColors[colorRotation]));
+				if (colorRotation < (bgColors.length - 1))
+					colorRotation++;
+				else
+					colorRotation = 0;
+			}, 0);	
+
         sick = new FlxSprite(-80).loadGraphic(Paths.image('sick', 'shared'));
 		sick.setGraphicSize(Std.int(sick.width * 0.7));
-		sick.updateHitbox();
 
 		if (FlxG.save.data.changedHit)
 			{
@@ -68,9 +80,8 @@ var bg:FlxSprite;
 			}
 		add(sick);
 
-		num = new FlxSprite(-80).loadGraphic(Paths.image('num0', 'preload'));
+		num = new FlxSprite(-80, 20).loadGraphic(Paths.image('num0', 'preload'));
 		num.setGraphicSize(Std.int(num.width * 0.5));
-num.updateHitbox();
 
 		if (FlxG.save.data.changedHitcombo)
 			{
@@ -81,7 +92,6 @@ num.updateHitbox();
 
 		combo = new FlxSprite(-80).loadGraphic(Paths.image('combo', 'shared'));
 		combo.setGraphicSize(Std.int(combo.width * 0.6));
-		combo.updateHitbox();
 
 		if (FlxG.save.data.changedHitcombo)
 			{
