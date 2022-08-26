@@ -1,6 +1,6 @@
 # Stylus Engine(ALTERNATIVE VERSION)
 
-![logo](art/simpleEngineLogo .png)
+![logo](art/simpleEngineLogo.png)
 
 # Desc
 
