@@ -74,8 +74,8 @@ num.updateHitbox();
 
 		if (FlxG.save.data.changedHitcombo)
 			{
-				num.x = FlxG.save.data.changedHitcomboX - 60;
-				num.y = FlxG.save.data.changedHitcomboY + 20;
+				num.x = FlxG.save.data.changedHitcomboX - 120;
+				num.y = 50 + FlxG.save.data.changedHitcomboY;
 			}
 		add(num);
 
@@ -113,8 +113,8 @@ num.updateHitbox();
 		combo.x = FlxG.save.data.changedHitcomboX;
 		combo.y = FlxG.save.data.changedHitcomboY;
 
-		num.x = FlxG.save.data.changedHitcomboX - 60;
-		num.y = FlxG.save.data.changedHitcomboY + 20;
+		num.x = FlxG.save.data.changedHitcomboX;
+		num.y = FlxG.save.data.changedHitcomboY;
 		
 		FlxG.camera.zoom = 3;
 		FlxTween.tween(FlxG.camera, {zoom: 1}, 1.1, {ease: FlxEase.expoInOut});
@@ -142,13 +142,13 @@ super.update(elapsed);
 
 						combo.x = (FlxG.mouse.screenX);
 						combo.y = (FlxG.mouse.screenY);
-						num.x = (FlxG.mouse.screenX - 60);
-						num.y = (FlxG.mouse.screenY + 20);
+						num.x = (FlxG.mouse.screenX);
+						num.y = (FlxG.mouse.screenY);
 
 			FlxG.save.data.changedHitcomboX = combo.x;
 			FlxG.save.data.changedHitcomboY = combo.y;
-			FlxG.save.data.changedHitcomboX = num.x - 60;
-			FlxG.save.data.changedHitcomboY = num.y + 25;
+			FlxG.save.data.changedHitcomboX = num.x;
+			FlxG.save.data.changedHitcomboY = num.y;
 			FlxG.save.data.changedHitcombo = true;
 					}
 			}
