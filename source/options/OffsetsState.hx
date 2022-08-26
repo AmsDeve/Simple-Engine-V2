@@ -59,6 +59,7 @@ var bg:FlxSprite;
 
         sick = new FlxSprite(-80).loadGraphic(Paths.image('sick', 'shared'));
 		sick.setGraphicSize(Std.int(sick.width * 0.7));
+		sick.updateHitbox();
 
 		if (FlxG.save.data.changedHit)
 			{
@@ -69,16 +70,18 @@ var bg:FlxSprite;
 
 		num = new FlxSprite(-80).loadGraphic(Paths.image('num0', 'preload'));
 		num.setGraphicSize(Std.int(num.width * 0.5));
+num.updateHitbox();
 
 		if (FlxG.save.data.changedHitcombo)
 			{
-				num.x = FlxG.save.data.changedHitcomboX - 120;
-				num.y = 50 + FlxG.save.data.changedHitcomboY;
+				num.x = FlxG.save.data.changedHitcomboX - 60;
+				num.y = FlxG.save.data.changedHitcomboY + 20;
 			}
 		add(num);
 
 		combo = new FlxSprite(-80).loadGraphic(Paths.image('combo', 'shared'));
 		combo.setGraphicSize(Std.int(combo.width * 0.6));
+		combo.updateHitbox();
 
 		if (FlxG.save.data.changedHitcombo)
 			{
@@ -110,8 +113,8 @@ var bg:FlxSprite;
 		combo.x = FlxG.save.data.changedHitcomboX;
 		combo.y = FlxG.save.data.changedHitcomboY;
 
-		num.x = FlxG.save.data.changedHitcomboX;
-		num.y = FlxG.save.data.changedHitcomboY;
+		num.x = FlxG.save.data.changedHitcomboX - 60;
+		num.y = FlxG.save.data.changedHitcomboY + 20;
 		
 		FlxG.camera.zoom = 3;
 		FlxTween.tween(FlxG.camera, {zoom: 1}, 1.1, {ease: FlxEase.expoInOut});
@@ -139,13 +142,13 @@ super.update(elapsed);
 
 						combo.x = (FlxG.mouse.screenX);
 						combo.y = (FlxG.mouse.screenY);
-						num.x = (FlxG.mouse.screenX);
-						num.y = (FlxG.mouse.screenY);
+						num.x = (FlxG.mouse.screenX - 60);
+						num.y = (FlxG.mouse.screenY + 20);
 
 			FlxG.save.data.changedHitcomboX = combo.x;
 			FlxG.save.data.changedHitcomboY = combo.y;
-			FlxG.save.data.changedHitcomboX = num.x;
-			FlxG.save.data.changedHitcomboY = num.y;
+			FlxG.save.data.changedHitcomboX = num.x - 60;
+			FlxG.save.data.changedHitcomboY = num.y + 25;
 			FlxG.save.data.changedHitcombo = true;
 					}
 			}
