@@ -25,8 +25,6 @@ class Preferences extends MusicBeatState
 	var selector:FlxText;
 	var curSelected:Int = 0;
 
-	var colorTween:FlxTween;
-
 	var buttonToggle:FlxButton;
 
 	var controlsStrings:Array<String> = [];
@@ -35,7 +33,6 @@ class Preferences extends MusicBeatState
 
 	var desc:FlxText;
 	var menuBG:FlxSprite;
-	var intendedColor:Int;
 	public static var isPauseSubState:Bool = false;
 
 	var grpControls:FlxTypedGroup<Alphabet>;
@@ -56,6 +53,7 @@ FlxG.mouse.visible = true;
 			"\nDownScroll " + (!FlxG.save.data.downscroll ? "off" : "on") +
 			"\nHitSound " + (!FlxG.save.data.hitSound ? "off" : "on") +
 			"\nHide Hud " + (!FlxG.save.data.hud ? "off" : "on") +
+			"\nAntialiasing " + (!FlxG.save.data.antialiasing ? "off" : "on") +
 			"\nFullscreen " + (!FlxG.save.data.fullscreen ? "off" : "on")
 		);
 		
@@ -118,8 +116,6 @@ FlxG.mouse.visible = true;
 		desc.setFormat(null, 24, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		desc.borderSize = 2.6;
 		add(desc);
-
-		intendedColor = menuBG.color;
 
 		FlxG.camera.zoom = 3;
 		FlxTween.tween(FlxG.camera, {zoom: 1}, 1.1, {ease: FlxEase.expoInOut});
@@ -188,10 +184,16 @@ FlxG.mouse.visible = true;
 						ctrl.targetY = curSelected - 4;
 						grpControls.add(ctrl);
 						case 5:
+							FlxG.save.data.antialiasing = !FlxG.save.data.antialiasing;
+							var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, "Antialiasing " + (!FlxG.save.data.antialiasing ? "off" : "on"), true, false);
+							ctrl.isMenuItem = true;
+							ctrl.targetY = curSelected - 5;
+							grpControls.add(ctrl);
+						case 6:
 							FlxG.save.data.fullscreen = !FlxG.save.data.fullscreen;
 							var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, "Fullscreen " + (!FlxG.save.data.fullscreen ? "off" : "on"), true, false);
 							ctrl.isMenuItem = true;
-							ctrl.targetY = curSelected - 5;
+							ctrl.targetY = curSelected - 6;
 							grpControls.add(ctrl);
 							if (FlxG.save.data.fullscreen)
 								FlxG.fullscreen = true;
@@ -250,6 +252,9 @@ FlxG.mouse.visible = true;
 				{desc.text = "Hide hud";}
 
 			if (curSelected == 5)
+				{desc.text = "Sprites cuality";}
+
+			if (curSelected == 6)
 				{desc.text = "Activate Full Screen";}
 
 			desc.screenCenter(X);
