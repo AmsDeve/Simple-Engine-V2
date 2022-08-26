@@ -47,8 +47,9 @@ FlxG.mouse.visible = true;
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Options Menu(Preferences)", null);
 		#end
-
-		menuBG = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
+		
+		var tex = 'menuDesat';
+		menuBG = new FlxSprite().loadGraphic(Paths.image(tex));
 		controlsStrings = CoolUtil.coolStringFile(
 			"GhostTapping " + (!FlxG.save.data.ghostTapping ? "off" : "on") + 
 			"\nMiddleScroll " + (!FlxG.save.data.middleScroll ? 'off' : 'on') + 
@@ -212,7 +213,7 @@ FlxG.mouse.visible = true;
 		// NGio.logEvent('Fresh');
 		#end
 		
-		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+		FlxG.sound.play(Paths.sound('scrollMenu'));
 
 		curSelected += change;
 
@@ -230,15 +231,14 @@ FlxG.mouse.visible = true;
 			item.targetY = bullShit - curSelected;
 			bullShit++;
 
-			item.alpha = 0.6;
+			item.color = FlxColor.WHITE;
 			// item.setGraphicSize(Std.int(item.width * 0.8));
 
 			if (curSelected == 0)
 				{desc.text = "you won't get misses from pressing keys";}
 
 			if (curSelected == 1)
-				{desc.text = "your notes get centered";
-		}
+				{desc.text = "your notes get centered";}
 
 			if (curSelected == 2)
 				{desc.text = "notes go Down instead of Up";}
@@ -256,7 +256,7 @@ FlxG.mouse.visible = true;
 
 			if (item.targetY == 0)
 			{
-				item.alpha = 1;
+				item.color = FlxColor.YELLOW;
 				// item.setGraphicSize(Std.int(item.width));
 			}
 		}
