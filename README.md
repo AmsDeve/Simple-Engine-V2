@@ -1,6 +1,6 @@
 # Stylus Engine(ALTERNATIVE VERSION)
 
-![FnF logo](art/simpleEngineLogo.png)
+![logo](art/simpleEngineLogo.png)
 
 # Desc
 
@@ -8,7 +8,7 @@ This is the Engine for Friday Night Funkin, game made by  [NinjaMuffin99](https:
 
 Play the original game in:https://www.newgrounds.com/portal/view/770371
 
-**IF YOU MAKE A MOD IN THIS ENGINE, OPEN THE SOURCE CODE IF YOUR MOD AS WELL**
+**# IF YOU MAKE A MOD IN THIS ENGINE, OPEN THE SOURCE CODE IF YOUR MOD AS WELL**
 
 # Credits
 
