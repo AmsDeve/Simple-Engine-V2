@@ -6,17 +6,22 @@ import flixel.FlxSubState;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
+import flixel.system.FlxSound;
 
 class GameOverSubstate extends MusicBeatSubstate
 {
 	var bf:Boyfriend;
 	var camFollow:FlxObject;
 
+	var dialogues:FlxSound;
+
+	var daStage = PlayState.curStage;
+
 	var stageSuffix:String = "";
 
 	public function new(x:Float, y:Float)
 	{
-		var daStage = PlayState.curStage;
+	
 		var daBf:String = '';
 		switch (daStage)
 		{
@@ -55,6 +60,8 @@ class GameOverSubstate extends MusicBeatSubstate
 	{
 		super.update(elapsed);
 
+		var stop:Bool = false;
+
 		if (controls.ACCEPT)
 		{
 			endBullshit();
@@ -77,7 +84,24 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.finished)
 		{
-			FlxG.sound.playMusic(Paths.music('gameOver' + stageSuffix));
+			FlxG.sound.playMusic(Paths.music('gameOver' + stageSuffix), 0.2);
+			if (FlxG.save.data.songGameOver)
+				FlxG.sound.playMusic(Paths.music('GameOverSongJarcor'), 0.2);
+
+			if (PlayState.SONG.player1 == 'bf-pixel')
+				{
+					FlxG.sound.play(Paths.sound('dialogs/extras-' + FlxG.random.int(1, 2)), 1, false, null, true, function onComplete() 
+						{
+							FlxG.sound.music.fadeIn(0.2, 0.2, 1);
+						});
+				}
+				else
+					{
+						FlxG.sound.play(Paths.sound('dialogs/dialogues-' + FlxG.random.int(1, 11)), 1, false, null, true, function onComplete() 
+							{
+								FlxG.sound.music.fadeIn(0.2, 0.2, 1);
+							});
+					}
 		}
 
 		if (FlxG.sound.music.playing)
