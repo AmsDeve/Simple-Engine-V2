@@ -81,8 +81,10 @@ class PlayState extends MusicBeatState
 	private var hudGroup:FlxTypedGroup<FlxSprite>;
 	private var playerStrums:FlxTypedGroup<FlxSprite>;
 
+	public static var instance:PlayState;
+	
 	private var camZooming:Bool = false;
-	private var curSong:String = "";
+	public var curSong:String = "";
 	var rating:String = "";
 
 	private var gfSpeed:Int = 1;
@@ -103,6 +105,8 @@ class PlayState extends MusicBeatState
 	private var iconP2:HealthIcon;
 	private var camHUD:FlxCamera;
 	private var camGame:FlxCamera;
+
+	var gfVersion:String = 'gf';
 
 	var dialogue:Array<String> = ['blah blah blah', 'coolswag'];
 
@@ -538,8 +542,6 @@ class PlayState extends MusicBeatState
 		          }
               }
 
-		var gfVersion:String = 'gf';
-
 		switch (curStage)
 		{
 			case 'limo':
@@ -558,9 +560,13 @@ class PlayState extends MusicBeatState
 		gf = new Character(400, 130, gfVersion);
 		gf.scrollFactor.set(0.95, 0.95);
 		gf.antialiasing = false;
+if(FlxG.save.data.antialiasing)
+		gf.antialiasing = true;
 
 		dad = new Character(100, 100, SONG.player2);
 		dad.antialiasing = false;
+if(FlxG.save.data.antialiasing)
+		dad.antialiasing = true;
 
 		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
 
@@ -603,6 +609,8 @@ class PlayState extends MusicBeatState
 
 		boyfriend = new Boyfriend(770, 450, SONG.player1);
 		boyfriend.antialiasing = false;
+if(FlxG.save.data.antialiasing)
+		boyfriend.antialiasing = true;
 
 		// REPOSITIONING PER STAGE
 		switch (curStage)
@@ -1395,6 +1403,13 @@ hudGroup.add(scoreTxt);
 		}
 
 		super.update(elapsed);
+
+		if (curStage.startsWith('school'))
+			{
+				dad.antialiasing = false;
+				boyfriend.antialiasing = false;
+				gf.antialiasing = false;
+			}
 
 		healthTxt.text = '${healthBar.percent}%';
 		healthTxt.screenCenter(X);
