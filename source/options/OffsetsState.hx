@@ -36,7 +36,7 @@ class OffsetsState extends MusicBeatState
 
 	var camFollow:FlxObject;
 
-	private var bgColors:Array<String> = ['#314d7f', '#4e7093', '#70526e', '#594465'];
+	private var bgColors:Array<String> = ['#00F7FF', '#001FFF', '#00FFBD', '#51FF00'];
 	private var colorRotation:Int = 1;
 
 	var defaultX:Float = FlxG.width * 0.55 - 135;
