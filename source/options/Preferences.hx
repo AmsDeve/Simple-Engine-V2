@@ -54,7 +54,8 @@ FlxG.mouse.visible = true;
 			"\nHitSound " + (!FlxG.save.data.hitSound ? "off" : "on") +
 			"\nHide Hud " + (!FlxG.save.data.hud ? "off" : "on") +
 			"\nAntialiasing " + (!FlxG.save.data.antialiasing ? "off" : "on") +
-			"\nFullscreen " + (!FlxG.save.data.fullscreen ? "off" : "on")
+			"\nFullscreen " + (!FlxG.save.data.fullscreen ? "off" : "on") +
+			"\nGameOver Music " + (!FlxG.save.data.songGameOver ? "Funkin" : "S E")
 		);
 		
 		trace(controlsStrings);
@@ -201,6 +202,12 @@ FlxG.mouse.visible = true;
 								{
 									FlxG.fullscreen = false;
 								}
+						case 7:
+						    FlxG.save.data.songGameOver = !FlxG.save.data.songGameOver;
+						    var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, "GameOver Music " + (!FlxG.save.data.songGameOver ? "Funkin" : "S E"), true, false);
+						    ctrl.isMenuItem = true;
+						    ctrl.targetY = curSelected - 7;
+						    grpControls.add(ctrl);
 				}
 			}
 		FlxG.save.flush();
@@ -252,10 +259,13 @@ FlxG.mouse.visible = true;
 				{desc.text = "Hide hud";}
 
 			if (curSelected == 5)
-				{desc.text = "Sprites cuality";}
+				{desc.text = "Sprites Quality";}
 
 			if (curSelected == 6)
 				{desc.text = "Activate Full Screen";}
+
+			if (curSelected == 7)
+				{desc.text = "Change GameOver Ost";}
 
 			desc.screenCenter(X);
 
