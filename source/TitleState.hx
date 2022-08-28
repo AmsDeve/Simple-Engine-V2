@@ -301,7 +301,7 @@ class TitleState extends MusicBeatState
 			{
 leftState = true;
 //just put this in false
-				if (!leftState)
+				if (leftState)
 				{
 					FlxG.switchState(new InfoSubState());
 				}
