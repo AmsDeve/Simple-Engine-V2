@@ -101,26 +101,18 @@ Preferences.isPauseSubState = true;
 
 		if (accepted)
 		{
-			var daSelected:String = menuItems[curSelected];
-
-			switch (daSelected)
+			switch (curSelected)
 			{
-				case "Resume":
+				case 0:
 					close();
-				case "Restart Song":
+				case 1:
 					FlxG.resetState();
-				case "Options":
+				case 2:
 					Preferences.isPauseSubState = true;
                     FlxG.switchState(new options.Preferences());
-				case "Exit to menu":
+				case 3:
 					FlxG.switchState(new MainMenuState());
 			}
-		}
-
-		if (FlxG.keys.justPressed.J)
-		{
-			// for reference later!
-			// PlayerSettings.player1.controls.replaceBinding(Control.LEFT, Keys, FlxKey.J, null);
 		}
 	}
 
