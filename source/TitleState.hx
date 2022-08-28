@@ -304,6 +304,9 @@ class TitleState extends MusicBeatState
 				}
 				else
 				{
+					if (FlxG.sound.music != null)
+						FlxG.sound.music.stop();
+					
 					FlxG.switchState(new MainMenuState());
 				}
 			});
