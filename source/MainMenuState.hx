@@ -144,11 +144,6 @@ class MainMenuState extends MusicBeatState
 				changeItem(1);
 			}
 
-			if (FlxG.keys.justPressed.SEVEN)
-				{
-					FlxG.switchState(new assmanfolder.MenuDeMierda());
-				}
-
 			if (controls.BACK)
 			{
 				FlxG.switchState(new TitleState());
@@ -182,17 +177,13 @@ class MainMenuState extends MusicBeatState
 								switch (curSelected)
 								{
 									case 0:
-									FlxG.switchState(new StoryMenuState());
-										trace('story menu');
+												FlxG.switchState(new StoryMenuState());
 									case 1:
-									FlxG.switchState(new FreeplayState());
-										trace('freeplay menu');
+												FlxG.switchState(new FreeplayState());
 									case 2:
-								        FlxG.openURL('https://ninja-muffin24.itch.io/funkin');
-										trace('donate');
+										        FlxG.openURL('https://ninja-muffin24.itch.io/funkin');
 									case 3:
-									FlxG.switchState(new OptionsMenu());
-										trace('options menu');
+												FlxG.switchState(new OptionsMenu());
 
 								}
 							});
