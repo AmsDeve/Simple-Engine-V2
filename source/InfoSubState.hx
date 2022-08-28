@@ -10,8 +10,6 @@ import lime.app.Application;
 
 class InfoSubState extends MusicBeatState
 {
-	public static var leftState:Bool = false;
-
 	override function create()
 	{
 		if (FlxG.sound.music != null)
@@ -36,7 +34,6 @@ class InfoSubState extends MusicBeatState
 	{
 		if (FlxG.keys.justPressed.ANY)
 		{
-			leftState = true;
 			FlxG.sound.play(Paths.sound('cancelMenu'), 1, false, null, true);
 			
 			new FlxTimer().start(0.5, function(tmr:FlxTimer)
