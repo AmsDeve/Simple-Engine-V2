@@ -46,6 +46,8 @@ class TitleState extends MusicBeatState
 
 	var wackyImage:FlxSprite;
 
+	public static var leftState:Bool = false;
+
 	public static var muteKeys:Array<FlxKey> = [FlxKey.ZERO];
 	public static var volumeDownKeys:Array<FlxKey> = [FlxKey.NUMPADMINUS, FlxKey.MINUS];
 	public static var volumeUpKeys:Array<FlxKey> = [FlxKey.NUMPADPLUS, FlxKey.PLUS];
@@ -297,8 +299,9 @@ class TitleState extends MusicBeatState
 
 			new FlxTimer().start(2, function(tmr:FlxTimer)
 			{
-
-				if (!InfoSubState.leftState)
+leftState = true;
+//just put this in false
+				if (!leftState)
 				{
 					FlxG.switchState(new InfoSubState());
 				}
@@ -306,11 +309,11 @@ class TitleState extends MusicBeatState
 				{
 					if (FlxG.sound.music != null)
 						FlxG.sound.music.stop();
-					
+
 					FlxG.switchState(new MainMenuState());
 				}
 			});
-			// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
+			FlxG.sound.play(Paths.music('titleShoot'), 0.7);
 		}
 
 		if (pressedEnter && !skippedIntro)
