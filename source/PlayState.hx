@@ -142,6 +142,8 @@ class PlayState extends MusicBeatState
 
 	var coolNoteSwag:Note;
 
+	public static var iconRotate:Bool = false;
+
 
 	public static var campaignScore:Int = 0;
 
@@ -1485,10 +1487,12 @@ hudGroup.add(scoreTxt);
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
 		// FlxG.watch.addQuick('VOLRight', vocals.amplitudeRight);
 
-		iconP1.setGraphicSize(Std.int(FlxMath.lerp(150, iconP1.width, 0.50)));
-		iconP2.setGraphicSize(Std.int(FlxMath.lerp(150, iconP2.width, 0.50)));
-
+		var mult:Float = FlxMath.lerp(1, iconP1.scale.x, CoolUtil.boundTo(1 - (elapsed * 9), 0, 1));
+		iconP1.scale.set(mult, mult);
 		iconP1.updateHitbox();
+
+		var mult:Float = FlxMath.lerp(1, iconP2.scale.x, CoolUtil.boundTo(1 - (elapsed * 9), 0, 1));
+		iconP2.scale.set(mult, mult);
 		iconP2.updateHitbox();
 
 		var iconOffset:Int = 26;
@@ -2580,8 +2584,8 @@ rating.cameras = [camHUD];
 					iconP2.angle = 13;
 				}
 
-		iconP1.setGraphicSize(Std.int(iconP1.width + 60));
-		iconP2.setGraphicSize(Std.int(iconP2.width + 60));
+				iconP1.scale.set(1.2, 1.2);
+				iconP2.scale.set(1.2, 1.2);
 
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
